@@ -3,7 +3,7 @@ name: CI
 on:
   push:
     branches: [ main ]
-    
+
   workflow_dispatch:
 
 
@@ -18,10 +18,9 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2.3.4
+        uses: actions/checkout@v2
 
       - name: Deploy on Yandex.Cloud Container
         run: | 
-          echo '${{ secrets.IAM }}' | docker login -u iam --password-stdin cr.yandex
           docker build . -t ${{ env.registry }}/${{ env.app_name }}
           docker push ${{ env.registry }}/${{ env.app_name }}
