@@ -6,6 +6,7 @@ on:
 
 jobs:
   deploy:
+    name: Deploy on Yandex.Cloud
     runs-on: ubuntu-latest
 
     env: 
@@ -17,6 +18,6 @@ jobs:
 
       - name: Deploy on Yandex.Cloud Container
         run: | 
-          echo '${{ secrets.IAM }}' | docker login -u iam --password-stdin cr.yandex
+          echo '${{ secrets.IAM }}' | docker login --username oauth --password-stdin cr.yandex
           docker build . -t ${{ env.registry }}/${{ env.app_name }}
           docker push ${{ env.registry }}/${{ env.app_name }}
