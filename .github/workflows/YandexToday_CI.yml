@@ -19,5 +19,5 @@ jobs:
       - name: Deploy on Yandex.Cloud Container
         run: | 
           echo '${{ secrets.IAM }}' | docker login --username oauth --password-stdin cr.yandex
-          docker build . -t ${{ env.registry }}/${{ env.app_name }}
-          docker push ${{ env.registry }}/${{ env.app_name }}
+          docker build . -t ${{ env.registry }}/yandext:${{ env.app_name }}
+          docker push ${{ env.registry }}/yandext:${{ env.app_name }}
