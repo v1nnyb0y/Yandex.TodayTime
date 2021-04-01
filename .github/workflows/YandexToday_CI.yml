@@ -3,17 +3,14 @@ name: CI
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
-  workflow_dispatch:
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     env: 
       registery: cr.yandex/crp50j9hporsn9435fmm
-      app_name: YandexToday
+      app_name: yandextoday
 
     steps:
       - uses: actions/checkout@v2
