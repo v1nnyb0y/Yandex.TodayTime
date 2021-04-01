@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env: 
-      registery: cr.yandex/crp50j9hporsn9435fmm
+      registry: cr.yandex/crp50j9hporsn9435fmm
       app_name: yandextoday
 
     steps:
