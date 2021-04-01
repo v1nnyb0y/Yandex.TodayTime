@@ -3,13 +3,12 @@ name: CI
 on:
   push:
     branches: [ main ]
-
+  pull_request:
+    branches: [ main ]
   workflow_dispatch:
 
-
 jobs:
-  deploy:
-    name: Deploy Solution
+  build:
     runs-on: ubuntu-latest
 
     env: 
@@ -17,10 +16,10 @@ jobs:
       app_name: YandexToday
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
       - name: Deploy on Yandex.Cloud Container
         run: | 
+          echo '${{ secrets.IAM }}' | docker login -u iam --password-stdin cr.yandex
           docker build . -t ${{ env.registry }}/${{ env.app_name }}
           docker push ${{ env.registry }}/${{ env.app_name }}
