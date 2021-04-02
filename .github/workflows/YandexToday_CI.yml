@@ -47,10 +47,9 @@ jobs:
 
       - name: Stop WebSite
         run: |
-          ssh -i ${{ env.SSH_KEY_PATH }} vinny_boy@${{ secrets.PUBLIC_IP }}
-          if [[$(docker container ls -aq | wc -l) -gt 0]] 
+          if [[$(ssh -i ${{ env.SSH_KEY_PATH }} vinny_boy@${{ secrets.PUBLIC_IP }} \ docker container ls -aq | wc -l) -gt 0]] 
           then
-            docker container stop $(docker container ls -aq)
+            ssh -i ${{ env.SSH_KEY_PATH }} vinny_boy@${{ secrets.PUBLIC_IP }} \ docker container stop $(docker container ls -aq)
           fi
 
       - name: Login to Docker
