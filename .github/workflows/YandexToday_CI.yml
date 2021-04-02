@@ -53,6 +53,6 @@ jobs:
         run: ssh -i ${{ env.SSH_KEY_PATH }} vinny_boy@${{ secrets.PUBLIC_IP }} \ docker pull ${{ env.registry }}/${{ env.app_name }}
 
       - name: Run WebSite
-        run: ssh -i ${{ env.SSH_KEY_PATH }} vinny_boy@${{ secrets.PUBLIC_IP }} \ docker run -p 49160:2093 --rm ${{ env.registry }}/${{ env.app_name }}
+        run: ssh -i ${{ env.SSH_KEY_PATH }} vinny_boy@${{ secrets.PUBLIC_IP }} \ docker run -d -p 49160:2093 --rm ${{ env.registry }}/${{ env.app_name }}
 
           
