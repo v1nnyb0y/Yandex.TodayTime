@@ -46,11 +46,7 @@ jobs:
           echo "${{ env.SSH_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
 
       - name: Stop WebSite
-        run: |
-          if [[$(ssh -i ${{ env.SSH_KEY_PATH }} vinny_boy@${{ secrets.PUBLIC_IP }} \ docker container ls -aq | wc -l) -gt 0]] 
-          then
-            ssh -i ${{ env.SSH_KEY_PATH }} vinny_boy@${{ secrets.PUBLIC_IP }} \ docker container stop $(docker container ls -aq)
-          fi
+        run: ssh -i ${{ env.SSH_KEY_PATH }} vinny_boy@${{ secrets.PUBLIC_IP }} \ docker container stop $(docker container ls -aq)
 
       - name: Login to Docker
         run: ssh -i ${{ env.SSH_KEY_PATH }} vinny_boy@${{ secrets.PUBLIC_IP }} \
