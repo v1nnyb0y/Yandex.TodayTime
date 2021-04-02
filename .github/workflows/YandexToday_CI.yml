@@ -47,7 +47,7 @@ jobs:
 
       - name: Stop WebSite
         run: |
-          if [[$(docker container ls -aq | wc -l) -gt 1]] 
+          if [[$(docker container ls -aq | wc -l) -gt 0]] 
           then
             docker container stop $(docker container ls -aq)
           fi
