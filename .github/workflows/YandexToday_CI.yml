@@ -45,6 +45,9 @@ jobs:
           sudo chmod 600 ../private.key
           echo "${{ env.SSH_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
 
+      - name: Stop WebSite
+        run: docker container stop $(docker container ls -aq)
+
       - name: Login to Docker
         run: ssh -i ${{ env.SSH_KEY_PATH }} vinny_boy@${{ secrets.PUBLIC_IP }} \
             curl -H Metadata-Flavor:Google 169.254.169.254/computeMetadata/v1/instance/service-accounts/default/token | cut -f1 -d',' | cut -f2 -d':' | tr -d '"' | sudo docker login --username iam --password-stdin cr.yandex
